@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <fcntl.h>
+
+#define LENGTH 1
+#define BPS 8000
+#define MAX_SIZE 256
+
+int main(int argc, char* argv[]){
+  int A = atof(argv[1]);
+  int f = atof(argv[2]);
+  
+  int i = 0,
+    length = LENGTH * BPS;
+  unsigned char buf[length];
+
+  flaot fb = f * 2 * PI / BPS;
+  flaot ab = A / MAX_SIZE / 2;
+
+  for(i = 0; i < length; i++){
+    buf[i] = ab * sin(f * fb);
+  }
+
+  int res = write(1, buf, length);
+  return 0;
+}
