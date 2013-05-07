@@ -1,9 +1,10 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
+/**
+ * xr, 
+ */
 void DFT( double *xr, double *xi, double *Xr, double *Xi, int N )
 {
   int k, n;
@@ -11,8 +12,9 @@ void DFT( double *xr, double *xi, double *Xr, double *Xi, int N )
   for( k = 0 ; k < N ; k++ ) {
     Xr[k] = Xi[k] = 0.0;
     for( n = 0 ; n < N ; n++ ) {
-      Xr[k] +=   /* ?????????? */
-      Xi[k] +=   /* ?????????? */
+      double tp = 2 * M_PI * n * k / N;  
+      Xr[k] += xr[n] * cos(tp) + xi[n] * sin(tp) /* ?????????? */
+      Xi[k] +=-xr[n] * sin(tp) + xi[n] * cos(tp)  /* ?????????? */
     }
   }
   return;
@@ -24,7 +26,7 @@ int main( int argc, char *argv[] )
   double spec;
   short  *sdata;
   double *xr, *xi, *Xr, *Xi;
-  FILE *fpDAT;y
+  FILE *fpDAT;
   
   if( 4 != argc ) {
     fprintf( stderr, "Usage : %s DATfile skip[sample] frame_length[sample]\n", argv[0] );
@@ -38,7 +40,7 @@ int main( int argc, char *argv[] )
   fprintf( stderr, "# DATfile = %s\n", argv[1] );
   fprintf( stderr, "# %d samples are skipped.\n", nskip );
   fprintf( stderr, "# 1 frame contains %d sampels.\n", framelen );
-b
+
   /* memory allocation */
   sdata = (short*)calloc( sizeof(short), framelen );
   xr = (double*)calloc( sizeof(double), framelen );

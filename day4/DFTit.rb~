@@ -1,0 +1,14 @@
+
+
+
+[["guitar", 9.467], ["mbira", 0.158], ["speech", 0.986]] do |sample|
+	[["8k", 8000], ["8to48k",48000], ["16k", 16000], ["48k", 48000]].each do |rate|
+		name = sample[0]
+		suffix = rate[1]
+		offset = rate[1] * sample[1]
+		duration = rate[1] * 0.032
+		echo "processing #{name} #{suffix} #{offset} #{duration}"
+		`./myDFT ./sounds/#{name}_#{suffix}.dat #{offset} #{duration} > ./dat/#{name}_#{suffix}_#{offset}_#{duration}.dat`
+	end	
+end
+

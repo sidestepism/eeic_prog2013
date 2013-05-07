@@ -12,9 +12,10 @@ void DFT( double *xr, double *xi, double *Xr, double *Xi, int N )
   for( k = 0 ; k < N ; k++ ) {
     Xr[k] = Xi[k] = 0.0;
     for( n = 0 ; n < N ; n++ ) {
-      Xr[k] +=   /* ?????????? */
-      Xi[k] +=   /* ?????????? */
-    }
+      double tp = 2 * M_PI * n * k / N;  
+      Xr[k] += xr[n] * cos(tp) + xi[n] * sin(tp);
+      Xi[k] +=-xr[n] * sin(tp) + xi[n] * cos(tp);  
+   }
   }
   return;
 }
