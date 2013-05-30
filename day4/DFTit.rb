@@ -20,7 +20,7 @@ EOS
       }
       `gnuplot plot.gnuplot`
       print "plotted"
-
+ 
 	end	
 end
 
