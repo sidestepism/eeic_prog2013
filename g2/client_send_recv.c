@@ -15,6 +15,10 @@ int main(int argc, char* argv[]){
 	}
 
 	int s = socket(PF_INET, SOCK_STREAM, 0);
+	if(s < 0){
+		printf("Invalid socket status (connectuion failure)\n");		
+	}
+
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = inet_addr(argv[1]);
